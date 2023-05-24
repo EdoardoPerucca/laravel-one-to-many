@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +30,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -73,7 +75,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -112,12 +116,14 @@ class ProjectController extends Controller
     {
         $validator = Validator::make($formData, [
             'title' => 'required|max:255|min:3',
-            'content' => 'required'
+            'content' => 'required',
+            'type_id' => 'nullable|exists:types,id',
         ], [
             'title.max' => 'Il titolo deve avere massimo :max caratteri',
             'title.required' => 'Il titolo è richiesto',
             'title.max' => 'Il titolo deve avere minimo :min caratteri',
-            'content.required' => 'Il post deve avere il contenuto',
+            'content.required' => 'Il progetto deve avere il contenuto',
+            'type_id.exists' => 'La tipologia deve essere presente nel sito',
         ])->validate();
     }
 }
