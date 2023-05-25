@@ -80,6 +80,8 @@ class ProjectController extends Controller
         return view('admin.projects.edit', compact('project', 'types'));
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *

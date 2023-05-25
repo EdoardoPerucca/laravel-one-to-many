@@ -99,11 +99,21 @@
 
             <div class="card {{str_contains(Route::currentRouteName(), 'projects.') ? 'border-primary' : ''}}">
                 <div class="card-header">
-                    Project
+                    Progetti
                 </div>
                 <div class="list-group list-group-flush">
                     <a href="{{route('admin.projects.index')}}" class="list-group-item list-group-item-action">Tutti i progetti</a>
                     <a href="{{route('admin.projects.create')}}" class="list-group-item list-group-item-action">Aggiungi un progetto</a>
+                </div>
+            </div>
+
+            <div class="card {{str_contains(Route::currentRouteName(), 'projects.') ? 'border-primary' : ''}}">
+                <div class="card-header">
+                    Tipologie
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="{{route('admin.types.index')}}" class="list-group-item list-group-item-action">Tutte le tipologie</a>
+                    <a href="{{route('admin.types.create')}}" class="list-group-item list-group-item-action">Aggiungi una tipologia</a>
                 </div>
             </div>
 
